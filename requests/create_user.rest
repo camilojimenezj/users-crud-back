@@ -2,7 +2,7 @@ POST http://localhost:3000/api/users
 Content-Type: application/json
 
 {
-  "name": "camilojj15",
+  "name": "camilojj17",
   "birth": "21/11/1999",
   "nit": 1234
 }

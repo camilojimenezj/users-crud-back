@@ -6,10 +6,10 @@ const getUsers = async () => {
 }
 
 const createUser = async (name, birth, nit) => {
-  const response = await pool.query('INSERT INTO users(name, birth, nit) VALUES($1, $2, $3)', [name, birth, nit])
+  const response = await pool.query('INSERT INTO users(name, birth, nit) VALUES($1, $2, $3) RETURNING *', [name, birth, nit])
 
   if(response.rowCount === 0) throw new Error(`CREATE user failed`)
-  return { name, birth, nit }
+  return response.rows
 }
 
 const updateUser = async (id, name, birth, nit) => {

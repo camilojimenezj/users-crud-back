@@ -1,10 +1,12 @@
 require('dotenv').config()
 const express = require('express')
 const userRouter = require('./routes/users')
+const cors = require('cors')
 const app = express()
 
 // middlewares
 app.use(express.json())
+app.use(cors())
 
 // Routes 
 app.use('/api/users', userRouter)
