@@ -7,9 +7,9 @@ userRouter.get('/', async (req, res) => {
 })
 
 userRouter.post('/', async (req, res) => {
-  const { name, birth, nit } = req.body
+  const { name, birth, document } = req.body
   try {
-    const response = await createUser(name, birth, nit)
+    const response = await createUser(name, birth, document)
     res.status(201).json(response)
     
   } catch (error) {
@@ -19,9 +19,9 @@ userRouter.post('/', async (req, res) => {
 
 userRouter.patch('/:id', async (req, res) => {
   const { id } = req.params
-  const { name, birth, nit } = req.body
+  const { name, birth, document } = req.body
   try {
-    const response = await updateUser(id, name, birth, nit)
+    const response = await updateUser(id, name, birth, document)
     res.json(response)
 
   } catch (error) {
@@ -31,7 +31,6 @@ userRouter.patch('/:id', async (req, res) => {
 
 userRouter.delete('/:id', async (req, res) => {
   const { id } = req.params
-
   try {
     const response = await deleteUser(id)
     res.json(response)

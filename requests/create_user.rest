@@ -4,5 +4,5 @@ Content-Type: application/json
 {
   "name": "camilojj17",
   "birth": "21/11/1999",
-  "nit": 1234
+  "document": 1234
 }

@@ -5,18 +5,18 @@ const getUsers = async () => {
   return response.rows
 }
 
-const createUser = async (name, birth, nit) => {
-  const response = await pool.query('INSERT INTO users(name, birth, nit) VALUES($1, $2, $3) RETURNING *', [name, birth, nit])
+const createUser = async (name, birth, document) => {
+  const response = await pool.query('INSERT INTO users(name, birth, document) VALUES($1, $2, $3) RETURNING *', [name, birth, document])
 
   if(response.rowCount === 0) throw new Error(`CREATE user failed`)
-  return response.rows
+  return response.rows[0]
 }
 
-const updateUser = async (id, name, birth, nit) => {
-  const response = await pool.query('UPDATE users SET name = $2, birth = $3, nit = $4 WHERE id = $1', [id, name, birth, nit])
+const updateUser = async (id, name, birth, document) => {
+  const response = await pool.query('UPDATE users SET name = $2, birth = $3, document = $4 WHERE id = $1 RETURNING *', [id, name, birth, document])
 
   if(response.rowCount === 0) throw new Error(`UPDATE user ${id} failed`)
-  return { id, name, birth, nit }
+  return response.rows[0]
 }
 
 const deleteUser = async (id) => {
